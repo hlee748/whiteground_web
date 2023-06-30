@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:whiteground_web/appbar.dart';
 
@@ -27,12 +29,83 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final ScrollController _controller = ScrollController();
+
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Stack(
+    return Scaffold(
+      body: Column(
         children: [
-          MyAppBar()
+          const MyAppBar(),
+          Expanded(
+            child: ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(
+                dragDevices: {
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.mouse,
+                }
+              ),
+              child: ListView(
+                controller: _controller,
+                physics: const AlwaysScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                children: [
+                  Container(
+                    child: Image.asset('png/group121.png', fit: BoxFit.cover,),
+                  ),
+                  Container(width: 100, height: 100,color: Colors.blue,),
+                  Container(width: 100, height: 100,color: Colors.green,),
+                  Container(width: 100, height: 100,color: Colors.yellow,),
+                  Container(width: 100, height: 100,color: Colors.orange,),
+                ],
+              ),
+            ),
+
+          )
+          // Expanded(
+          //     child: Column(
+          //       children: [
+          //         AspectRatio(aspectRatio: 16/9,
+          //           child:Image.asset('png/group121.png', fit: BoxFit.contain,), ),
+          //         Container(
+          //             color: Colors.yellow,
+          //             padding: EdgeInsets.all(24),
+          //             child: Text('COMEING SOON')
+          //         ),
+          //         Container(
+          //             color: Colors.yellow,
+          //             padding: EdgeInsets.all(24),
+          //             child: Text('COMEING SOON')
+          //         ),
+          //         Container(
+          //             color: Colors.yellow,
+          //             padding: EdgeInsets.all(24),
+          //             child: Text('COMEING SOON')
+          //         ),
+          //         Container(
+          //             color: Colors.yellow,
+          //             padding: EdgeInsets.all(24),
+          //             child: Text('COMEING SOON')
+          //         ),
+          //         Container(
+          //             color: Colors.yellow,
+          //             padding: EdgeInsets.all(24),
+          //             child: Text('COMEING SOON')
+          //         ),
+          //         Container(
+          //             color: Colors.yellow,
+          //             padding: EdgeInsets.all(24),
+          //             child: Text('COMEING SOON')
+          //         ),
+          //         Container(
+          //             color: Colors.yellow,
+          //             padding: EdgeInsets.all(24),
+          //             child: Text('COMEING SOON')
+          //         ),
+          //       ],
+          //     )
+          // ),
         ],
       )
     );

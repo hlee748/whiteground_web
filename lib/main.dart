@@ -1,7 +1,9 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:whiteground_web/appbar.dart';
+import 'package:whiteground_web/contact.dart';
+import 'package:whiteground_web/service.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,100 +33,177 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final ScrollController _controller = ScrollController();
 
-
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: Column(
-        children: [
-          const MyAppBar(),
-          Expanded(
-            child: ScrollConfiguration(
-              behavior: ScrollConfiguration.of(context).copyWith(
-                dragDevices: {
+        appBar: PreferredSize(
+          preferredSize: Size(screenSize.width, 1000),
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 100.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset(
+                  'png/whiteground_logo.png',
+                  scale: 2,
+                ),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Service()));
+                      },
+                      child: Image.asset(
+                        'png/mobile.png',
+                        scale: 10,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 24,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Contact()));
+                      },
+                      child: Image.asset(
+                        'png/document2.png',
+                        scale: 10,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        body: Column(
+          children: [
+            // const MyAppBar(),
+            Expanded(
+              child: ScrollConfiguration(
+                behavior:
+                    ScrollConfiguration.of(context).copyWith(dragDevices: {
                   PointerDeviceKind.touch,
                   PointerDeviceKind.mouse,
-                }
-              ),
-              child: ListView(
-                controller: _controller,
-                physics: const AlwaysScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                children: [
-                  Container(
-                    child: Image.asset('png/group121.png', fit: BoxFit.cover,),
-                  ),
-                  Container(
-                    // color: Colors.blue,
-                    padding: EdgeInsets.all(24),
-                    child: Column(
-                      children: [
-                        Text(
-                          'SERVICE',
-                          style: TextStyle(fontSize: 24),),
-                        SizedBox(height: 24,),
-                        Row(
+                }),
+                child: ListView(
+                  controller: _controller,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Image.asset(
+                      'jpeg/whiteground_bg2.jpeg',
+                    ),
+                    Container(
+                      // color: Colors.blue,
+                      padding: const EdgeInsets.all(24),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20.0, horizontal: 100.0),
+                        child: Column(
                           children: [
-                            Image.asset('png/snowrun_ic.png',scale: 1.5,),
-                            SizedBox(width: 24,),
-                            Text('SnowRun')
+                            const Text(
+                              'APP',
+                              style: TextStyle(
+                                fontSize: 48,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 2.0,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 34,
+                            ),
+                            Row(
+                              children: [
+                                Center(
+                                  child: Container(
+                                    // color: Colors.yellow,
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          'png/snowrun_ic.png',
+                                          scale: 1,
+                                        ),
+                                        const SizedBox(
+                                          width: 60,
+                                        ),
+                                        const Column(
+                                          children: [
+                                            Text(
+                                              'SnowRun',
+                                              style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w700,
+                                                fontStyle: FontStyle.italic,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 120,
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 100,),
-                  Container(width: 100, height: 200,color: Colors.black,),
-                ],
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    Container(
+                      width: 100,
+                      height: 200,
+                      color: Colors.black,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20.0, horizontal: 100.0),
+                        child: Column(
+                          children: [
+                            InkWell(
+                              onTap: () {},
+                              child: Image.asset(
+                                'png/instagram.png',
+                                scale: 18,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            const Text(
+                              'WHITEGROUND',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            const Text(
+                              'develop@smallestapp.com',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            const Text(
+                              '@2023 WHITEGROUND- All Right Reserved',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-
-          )
-          // Expanded(
-          //     child: Column(
-          //       children: [
-          //         AspectRatio(aspectRatio: 16/9,
-          //           child:Image.asset('png/group121.png', fit: BoxFit.contain,), ),
-          //         Container(
-          //             color: Colors.yellow,
-          //             padding: EdgeInsets.all(24),
-          //             child: Text('COMEING SOON')
-          //         ),
-          //         Container(
-          //             color: Colors.yellow,
-          //             padding: EdgeInsets.all(24),
-          //             child: Text('COMEING SOON')
-          //         ),
-          //         Container(
-          //             color: Colors.yellow,
-          //             padding: EdgeInsets.all(24),
-          //             child: Text('COMEING SOON')
-          //         ),
-          //         Container(
-          //             color: Colors.yellow,
-          //             padding: EdgeInsets.all(24),
-          //             child: Text('COMEING SOON')
-          //         ),
-          //         Container(
-          //             color: Colors.yellow,
-          //             padding: EdgeInsets.all(24),
-          //             child: Text('COMEING SOON')
-          //         ),
-          //         Container(
-          //             color: Colors.yellow,
-          //             padding: EdgeInsets.all(24),
-          //             child: Text('COMEING SOON')
-          //         ),
-          //         Container(
-          //             color: Colors.yellow,
-          //             padding: EdgeInsets.all(24),
-          //             child: Text('COMEING SOON')
-          //         ),
-          //       ],
-          //     )
-          // ),
-        ],
-      )
-    );
+            )
+          ],
+        ));
   }
 }

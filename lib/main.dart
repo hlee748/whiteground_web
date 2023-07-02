@@ -54,10 +54,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                     child: Image.asset('png/group121.png', fit: BoxFit.cover,),
                   ),
-                  Container(width: 100, height: 100,color: Colors.blue,),
-                  Container(width: 100, height: 100,color: Colors.green,),
-                  Container(width: 100, height: 100,color: Colors.yellow,),
-                  Container(width: 100, height: 100,color: Colors.orange,),
+                  Container(
+                    // color: Colors.blue,
+                    padding: EdgeInsets.all(24),
+                    child: Column(
+                      children: [
+                        Text(
+                          'SERVICE',
+                          style: TextStyle(fontSize: 24),),
+                        SizedBox(height: 24,),
+                        Row(
+                          children: [
+                            Image.asset('png/snowrun_ic.png',scale: 1.5,),
+                            SizedBox(width: 24,),
+                            Text('SnowRun')
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 100,),
+                  Container(width: 100, height: 200,color: Colors.black,),
                 ],
               ),
             ),

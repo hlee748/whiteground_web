@@ -21,12 +21,12 @@ class MyAppBar extends StatelessWidget {
         ),
         Container(
           // color: Colors.green,
-          width: 200,
-          child: const Row(
+          width: 160,
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(Icons.phone_iphone, size: 60,),
-              Icon(Icons.subject_rounded, size: 60,)
+              Image.asset('png/mobile.png', scale: 10,),
+              Image.asset('png/document2.png', scale: 10,),
             ],
           ),
         ),

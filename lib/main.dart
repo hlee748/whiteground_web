@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 builder: (context) => const Contact()));
                       },
                       child: Image.asset(
-                        'png/document2.png',
+                        'png/document.png',
                         scale: 10,
                       ),
                     ),
@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Image.asset(
-                      'jpeg/whiteground_bg2.jpeg',
+                      'jpeg/whiteground_bg.jpeg',
                     ),
                     Container(
                       // color: Colors.blue,

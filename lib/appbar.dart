@@ -26,7 +26,7 @@ class MyAppBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image.asset('png/mobile.png', scale: 10,),
-              Image.asset('png/document2.png', scale: 10,),
+              Image.asset('png/document.png', scale: 10,),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
@@ -60,7 +61,7 @@ class NavBar extends StatelessWidget {
     return const Row(
       children: [
         NavBarItem(
-          assetName: 'png/mobile.png',
+          assetName: 'assets/png/mobile.png',
           routeName: '/service',
         ),
         SizedBox(width: 24),

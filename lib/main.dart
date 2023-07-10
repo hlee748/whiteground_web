@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:whiteground_web/contact.dart';
 import 'package:whiteground_web/homepage.dart';
 import 'package:whiteground_web/service.dart';
@@ -16,6 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
+                statusBarColor: Colors.white,
+                statusBarBrightness: Brightness.light,
+                statusBarIconBrightness: Brightness.dark
+            )
+        )
+      ),
       title: 'Whiteground',
       initialRoute: '/',
       builder: (context, child) => ResponsiveBreakpoints.builder(

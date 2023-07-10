@@ -1,193 +1,173 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomePage extends StatelessWidget{
+class HomePage extends StatelessWidget {
   final ScrollController _controller = ScrollController();
-  HomePage({super.key});
+
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
-
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size(screenSize.width, 1000),
-          child: Padding(
-            padding:
-            const EdgeInsets.symmetric(vertical: 20.0, horizontal: 100.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(
-                  'assets/png/whiteground_logo.png',
-                  scale: 2,
-                ),
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/service');
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const Service()));
-                      },
-                      child: Image.asset(
-                        'png/mobile.png',
-                        scale: 10,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 24,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/contact');
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const Contact()));
-                      },
-                      child: Image.asset(
-                        'assets/png/document.png',
-                        scale: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        body: Column(
-          children: [
-            // const MyAppBar(),
-            Expanded(
-              child: ScrollConfiguration(
-                behavior:
-                ScrollConfiguration.of(context).copyWith(dragDevices: {
-                  PointerDeviceKind.touch,
-                  PointerDeviceKind.mouse,
-                }),
-                child: ListView(
-                  controller: _controller,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Image.asset(
-                      'assets/jpeg/whiteground_bg.jpeg',
-                    ),
-                    Container(
-                      // color: Colors.blue,
-                      padding: const EdgeInsets.all(24),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 20.0, horizontal: 100.0),
-                        child: Column(
-                          children: [
-                            const Text(
-                              'APPs',
-                              style: TextStyle(
-                                fontSize: 48,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 2.0,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 34,
-                            ),
-                            Row(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    // color: Colors.yellow,
-                                    child: Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/png/snowrun_ic.png',
-                                          scale: 1,
-                                        ),
-                                        const SizedBox(
-                                          width: 60,
-                                        ),
-                                        const Column(
-                                          children: [
-                                            Text(
-                                              'SnowRun',
-                                              style: TextStyle(
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.w700,
-                                                fontStyle: FontStyle.italic,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 120,
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 100,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 200,
-                      color: Colors.black,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 20.0, horizontal: 100.0),
-                        child: Column(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                launchUrl(Uri.parse('https://instagram.com/snowrun__?igshid=OGQ5ZDc2ODk2ZA=='));
-                                print('눌림');
-                              },
-                              child: Image.asset(
-                                'assets/png/instagram.png',
-                                scale: 18,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            const Text(
-                              'WHITEGROUND',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            const Text(
-                              'develop@smallestapp.com',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            const Text(
-                              '@2023 WHITEGROUND- All Right Reserved',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        )
+      appBar: const MyAppBar(),
+      body: ListView(
+        controller: _controller,
+        physics: const AlwaysScrollableScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        children: const [
+          HomePageContent(),
+          Footer(),
+        ],
+      ),
     );
   }
 }
 
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const MyAppBar({super.key});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(100);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 100.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+              child:  Image.asset(
+                'assets/png/whiteground_logo.png',
+                scale: 2,
+              ),
+          ),
+          const NavBar(),
+          // const Flexible(
+          //     child: NavBar(),
+          // ),
+        ],
+      ),
+    );
+  }
+}
+
+class NavBar extends StatelessWidget {
+  const NavBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        NavBarItem(
+          assetName: 'png/mobile.png',
+          routeName: '/service',
+        ),
+        SizedBox(width: 24),
+        NavBarItem(
+          assetName: 'assets/png/document.png',
+          routeName: '/contact',
+        ),
+      ],
+    );
+  }
+}
+
+class NavBarItem extends StatelessWidget {
+  final String assetName;
+  final String routeName;
+
+  const NavBarItem({super.key, required this.assetName, required this.routeName});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => Navigator.pushNamed(context, routeName),
+      child: Image.asset(
+        assetName,
+        scale: 10,
+      ),
+    );
+  }
+}
+
+class HomePageContent extends StatelessWidget {
+  const HomePageContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Image.asset('assets/jpeg/whiteground_bg.jpeg'),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 40.0, horizontal: 100.0),
+          child: Column(
+            children: [
+              Text(
+                'APP',
+                style: TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2.0,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 100.0),
+          child: Row(
+            children: [
+              Flexible(
+                  child: Image.asset(
+                    'assets/png/snowrun_ic.png',
+                    scale: 1,
+                  ),
+              ),
+              const SizedBox(
+                width: 60,
+              ),
+              const Text(
+                'SnowRun',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Footer extends StatelessWidget {
+  const Footer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 200,
+      color: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 100.0),
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () => launchUrl(Uri.parse('https://instagram.com/snowrun__?igshid=OGQ5ZDc2ODk2ZA==')),
+              child: Image.asset('assets/png/instagram.png', scale: 18),
+            ),
+            const SizedBox(height: 12),
+            const Text('WHITEGROUND', style: TextStyle(color: Colors.white)),
+            const Text('develop@smallestapp.com', style: TextStyle(color: Colors.white)),
+            const Text('@2023 WHITEGROUND- All Right Reserved', style: TextStyle(color: Colors.white)),
+          ],
+        ),
+      ),
+    );
+  }
+}
 

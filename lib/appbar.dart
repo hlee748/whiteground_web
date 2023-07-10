@@ -8,7 +8,7 @@ class MyAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
+        SizedBox(
           // color: Colors.pink,
           width: 120,
           child: Image.asset('png/whiteground_ic.png'),
@@ -19,7 +19,7 @@ class MyAppBar extends StatelessWidget {
               fontSize: 24
           ),
         ),
-        Container(
+        SizedBox(
           // color: Colors.green,
           width: 160,
           child: Row(

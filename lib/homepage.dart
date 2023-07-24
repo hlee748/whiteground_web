@@ -13,13 +13,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
 
-  final ScrollController _controller = ScrollController();
   PopupMenuItems? selectedMenu;
   // Controllers
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
       body:
         MyAppBar(),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:whiteground_web/contact.dart';
 import 'package:whiteground_web/homepage.dart';
 import 'package:whiteground_web/service.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:whiteground_web/team.dart';
 
 void main() {
   runApp(
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomePage(),
         '/service': (context) => const Service(),
-        '/contact': (context) => const Contact(),
+        '/contact': (context) => const Team(),
       },
     );
   }

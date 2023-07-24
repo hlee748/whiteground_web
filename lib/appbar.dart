@@ -11,13 +11,17 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
         slivers: <Widget>[
-          SliverPadding(padding: EdgeInsets.symmetric(horizontal: 100),
+          SliverPadding(padding: const EdgeInsets.symmetric(horizontal: 100),
           sliver: SliverAppBar(
-            backgroundColor: CupertinoColors.systemGrey3,
+            backgroundColor: Colors.transparent,
             floating: true,
             automaticallyImplyLeading: false,
             pinned: true,
-            title: Image.asset('assets/png/whiteground_logo.png', scale: 1.5,),
+            title: GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, '/');
+                },
+                child: Image.asset('assets/png/whiteground_logo.png', scale: 1.5,)),
             actions: <Widget>[
               Padding(padding: const EdgeInsets.all(10),
                 child: Row(

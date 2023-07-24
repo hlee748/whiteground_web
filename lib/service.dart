@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whiteground_web/appbar.dart';
+import 'package:whiteground_web/footer.dart';
+import 'package:whiteground_web/sliver_app_bar.dart';
 
 class Service extends StatelessWidget {
   const Service({super.key});
@@ -7,30 +8,26 @@ class Service extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar:  const MyAppBar(),
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-           const Text("COMMINGSOON", style: TextStyle(fontSize: 80),),
-              const SizedBox(height: 100,),
-              Image.asset(
-                'assets/png/snowrun_ic.png',
-                scale: 1,
-              ),
-              const SizedBox(height: 40,),
-              const Text(
-                'SnowRun',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-            ],
-        ),
+      body: CustomScrollView(
+        slivers: [
+          const SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 100),
+            sliver: TopBar(),
+          ),
+          SliverToBoxAdapter(
+            child: Stack(
+              alignment: Alignment.center,
+                children: [
+                  const Text('COMMING\n SOON',
+                    style: TextStyle(color: Colors.grey, fontSize: 64, letterSpacing: 10),
+                    textAlign: TextAlign.center,
+                  ),
+                  Image.asset('assets/png/service_picture.png')
+                ]
+            ),
+          ),
+          const Footer(),
+        ],
       ),
     );
   }

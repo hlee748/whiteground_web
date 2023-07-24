@@ -20,15 +20,6 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-            systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: Colors.white,
-                statusBarBrightness: Brightness.light,
-                statusBarIconBrightness: Brightness.dark
-            )
-        )
-      ),
       title: 'Whiteground',
       initialRoute: '/',
       builder: (context, child) => ResponsiveBreakpoints.builder(
@@ -41,7 +32,7 @@ class MyApp extends StatelessWidget {
         ],
       ),
       routes: {
-        '/': (context) => HomePage(),
+        '/': (context) => const HomePage(),
         '/service': (context) => const Service(),
         '/contact': (context) => const Contact(),
       },

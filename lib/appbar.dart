@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:whiteground_web/top_bar_contents.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({super.key});
@@ -9,34 +9,156 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-    //   AppBar(
-    //   toolbarHeight: 100,
-    //   elevation: 0,
-    //   automaticallyImplyLeading:false,
-    //   title: Row(
-    //     mainAxisAlignment: MainAxisAlignment.start,
-    //     children: [
-    //       InkWell(
-    //         onTap: (){
-    //           Navigator.pushNamed(context, '/');
-    //         },
-    //         child: Image.asset('assets/png/whiteground_logo.png',fit: BoxFit.fitWidth,
-    //           height: MediaQuery.of(context).size.height * 0.3,
-    //           width: MediaQuery.of(context).size.width * 0.2,
+    return CustomScrollView(
+        slivers: <Widget>[
+          SliverPadding(padding: EdgeInsets.symmetric(horizontal: 100),
+          sliver: SliverAppBar(
+            backgroundColor: CupertinoColors.systemGrey3,
+            floating: true,
+            automaticallyImplyLeading: false,
+            pinned: true,
+            title: Image.asset('assets/png/whiteground_logo.png', scale: 1.5,),
+            actions: <Widget>[
+              Padding(padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, '/service');
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset('assets/png/application.png', scale: 1.8, ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12,),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pushNamed(context, '/contact');
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset('assets/png/team.png', scale: 1.8, ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 12,),
+                  ],
+                ),)
+            ],
+          ),),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: Image.asset('assets/png/home_paint.png'),
+            )
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 64,),
+          ),
+          SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('APP', style: TextStyle(fontSize: 48),),
+                      const SizedBox(height: 40,),
+                      Row(
+                        children: [
+                          Image.asset('assets/png/snowrun_ic.png'),
+                          const SizedBox(width: 24,),
+                          const Text('SnowRun', style: TextStyle(fontSize: 24, fontStyle: FontStyle.italic),)
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 64,),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: Container(
+                height: 200,
+                color: Colors.black,
+                child: const Column(
+                  children: [
+                    SizedBox(height: 40,),
+                    Text('WHITEGROUND', style: TextStyle(color: Colors.white),),
+                    Text('whitegroundTeam@gmail.com', style: TextStyle(color: Colors.white),),
+                    Text('CEO - 이현주', style: TextStyle(color: Colors.white),),
+                    Text('BUSINESS NUMBER. 625-15-02169', style: TextStyle(color: Colors.white),),
+                    Text('©WHITEGROUND', style: TextStyle(color: Colors.white),),
+                    SizedBox(height: 14,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('PRIVACY POLICY', style: TextStyle(color: Colors.white, decoration: TextDecoration.underline),),
+                        SizedBox(width: 12,),
+                        Text('TERMS & CONDITIONS GUIDE', style: TextStyle(color: Colors.white, decoration: TextDecoration.underline),),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
+    );
+
+
+    //   Container(
+    //   height: 80,
+    //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+    //   child: Row(
+    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //     children: <Widget>[
+    //       SizedBox(
+    //         height: double.infinity,
+    //         width: 300,
+    //         child: GestureDetector(
+    //           onTap: (){
+    //             Navigator.pushNamed(context, '/');
+    //           },
+    //             child: Image.asset("assets/png/whiteground_logo.png", fit: BoxFit.fill,)
     //         ),
+    //       ),
+    //       Row(
+    //         children: [
+    //           GestureDetector(
+    //             onTap: (){
+    //               Navigator.pushNamed(context, '/service');
+    //             },
+    //             child: Column(
+    //               mainAxisSize: MainAxisSize.min,
+    //               children: [
+    //                 Image.asset('assets/png/mobile.png',scale: 10, ),
+    //               ],
+    //             ),
+    //           ),
+    //           const SizedBox(width: 12,),
+    //           GestureDetector(
+    //             onTap: (){
+    //               Navigator.pushNamed(context, '/contact');
+    //             },
+    //             child: Column(
+    //               mainAxisSize: MainAxisSize.min,
+    //               children: [
+    //                 Image.asset('assets/png/document.png',scale: 10, ),
+    //               ],
+    //             ),
+    //           ),
+    //         ],
     //       )
     //     ],
     //   ),
-    //   backgroundColor: Colors.white,
-    //   actions: const [
-    //     NavBar(),
-    //   ],
     // );
-    PreferredSize(
-        preferredSize: Size(MediaQuery.of(context).size.width, 70),
-        child: const TopBarContents(),
-    );
   }
 }
 

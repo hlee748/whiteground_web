@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whiteground_web/appbar.dart';
-import 'package:whiteground_web/responsive.dart';
 
 enum PopupMenuItems {service, contact}
 
@@ -22,66 +21,88 @@ class _HomePageState extends State<HomePage>{
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: ResponsiveWidget.isSmallScreen(context) ?
-      AppBar(
-        elevation: 0,
-        leading: Image.asset('assets/png/whiteground_ic.png',),
-        title: const Text('WHITEGROUND', style: TextStyle(color: Colors.black),),
-        backgroundColor: Colors.white,
-        actions: [
-          PopupMenuButton<PopupMenuItems>(
-            color: Colors.grey,
-            initialValue: selectedMenu,
-              onSelected: (PopupMenuItems item){
-                setState((){
-                    selectedMenu = item;
-                });
-              },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<PopupMenuItems>>[
-              PopupMenuItem(
-                value: PopupMenuItems.service,
-                  child: Row(
-                    children: [
-                      Image.asset('assets/png/mobile.png', scale: 12,),
-                      SizedBox(width: 24,),
-                      const Text('서비스')
-                    ],
-                  )
-              ),
-            ]
-              // itemBuilder: (BuildContext context) => <PopupMenuEntry<PopupMenuItem>>[
-              //   PopupMenuItem<PopupMenuItem>(
-              //     value: PopupMenuItem.service,
-              //         child: Text('3'),
-              //     ),
-              //   PopupMenuItem<PopupMenuItem>(
-              //     value: PopupMenuItem.contact,
-              //     child: Text('3'),
-              //   ),
-              // ]
-          ),
-          // IconButton(
-          //     onPressed: (){},
-          //     icon: const Icon(Icons.dehaze_rounded, color: Colors.black,)
-          // )
-        ],
-      ) :
-      const MyAppBar(),
       body:
-      ListView(
-        controller: _controller,
-        physics: const AlwaysScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        children: const [
-          HomePageContent(),
-          Footer(),
-        ],
-      ),
+        MyAppBar(),
+        // Stack(
+        //   children: [
+        //     ListView(
+        //       controller: _controller,
+        //       physics: const AlwaysScrollableScrollPhysics(),
+        //       scrollDirection: Axis.vertical,
+        //       children: const [
+        //         HomePageContent(),
+        //         Footer(),
+        //       ],
+        //     ),
+        //     const Positioned(
+        //       top: 0,
+        //         left: 0,
+        //         right: 0,
+        //         child: MyAppBar(),
+        //     ),
+        //   ],
+        // ),
+
+      // ListView(
+      //   controller: _controller,
+      //   physics: const AlwaysScrollableScrollPhysics(),
+      //   scrollDirection: Axis.vertical,
+      //   children: const [
+      //     HomePageContent(),
+      //     Footer(),
+      //   ],
+      // ),
     );
   }
 
 }
 
+class MenuItem {
+  const MenuItem({
+    required this.icon,
+    required this.text,
+});
+  final String text;
+  final String icon;
+}
+
+abstract class MenuItems {
+  static const List<MenuItem> dropDownItems = [service, member];
+
+  static const service = MenuItem(text: 'Service', icon: 'assets/png/mobile.png');
+  static const member = MenuItem(text: 'Member', icon: 'assets/png/document.png');
+
+  static Widget buildItem(MenuItem item){
+    return Row(
+      children: [
+        Image.asset(item.icon, scale: 12,),
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded(
+          child: Text(
+            item.text,
+            style: const TextStyle(
+              color: Colors.black,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  static void onChanged(BuildContext context, MenuItem item) {
+    switch (item) {
+      case MenuItems.service:
+      //Do something
+        break;
+      case MenuItems.member:
+      //Do something
+        break;
+    }
+  }
+
+}
 
 
 // class MyAppBar extends StatelessWidget implements PreferredSizeWidget {

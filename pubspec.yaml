@@ -42,6 +42,7 @@ dependencies:
   web_smooth_scroll: ^1.1.0
   provider: ^6.0.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
